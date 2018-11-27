@@ -1,0 +1,20 @@
+This is the file designating the entirety of the game design.
+
+
+# GAMEPLAY DESIGN
+
+How is the game actually played?
+
+
+# GAME DESIGN
+
+How does the code actually work?
+
+TOC:
+-main loop
+    -game loop
+    -update loop
+-headers
+-assets
+-controller handling
+-arduino writing
