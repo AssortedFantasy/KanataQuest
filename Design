@@ -5,6 +5,7 @@ This is the file designating the entirety of the game design.
 
 How is the game actually played?
 
+Mabye don't write in this file.
 
 # GAME DESIGN
 
@@ -18,3 +19,10 @@ TOC:
 -assets
 -controller handling
 -arduino wiring and design
+
+
+
+*MAIN LOOP
+Idea taken from:
+http://entropyinteractive.com/2011/02/game-engine-design-the-game-loop/
+
