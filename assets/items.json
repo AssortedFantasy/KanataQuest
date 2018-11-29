@@ -8,6 +8,7 @@
             "attackEffect":"1d6+4",
             "blockEffect":"1d6+4",
             "armourEffect":"1d6+4",
+            
         },
         "equipslot":["hand", "foot", "chest"]
     },
