@@ -1,0 +1,12 @@
+This folder contains the layout for how the items, npcs and whatnot should work.
+
+Current item design:
+Items are in a big json file and have names which work like this:
+
+<person's> <legendary/epic/unusual/rare/default/poor> <adjective> <item> [of the] <profession>
+Legendary's have all the flavour text.
+Epics have everything except the owner.
+Unusuals have everything except [of the professions]
+rares only have adjectives
+defaults are only the item
+poors have bad adjectives

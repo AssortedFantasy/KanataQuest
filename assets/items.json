@@ -1,0 +1,14 @@
+[
+    {
+        "name":"DevStick",
+        "flavourtext":"This item is supposed to have all effects, to show what is possible in the game",
+        "class":"any",
+        "icon":"missing.png",
+        "data":{
+            "attackEffect":"1d6+4",
+            "blockEffect":"1d6+4",
+            "armourEffect":"1d6+4",
+        },
+        "equipslot":["hand", "foot", "chest"]
+    },
+]
