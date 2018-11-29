@@ -1,0 +1,56 @@
+{
+	"class":"Enemy",
+	"name":"bat",
+    "data":{
+        "attackEffect":"1d3",
+	    "movement":"random",
+	    "speed":"normal"
+    }
+},
+{
+	"class":"Enemy",
+	"name":"skeleton",
+    "data":{
+	    "collisionEffect":"1d4 + 2",
+	    "speed":"normal",
+	    "movement":"direct"
+    }
+},
+{
+	"class":"Enemy",
+	"name":"Zombie",
+    "data":{
+	    "movement":"direct",
+	    "speed":"slow",
+	    "collisionEffect":"2d3"
+
+    }
+},
+{,
+	"class":"Enemy",
+	"name":"Wraith",
+    "data":{
+	    "movement":"direct",
+	    "speed":"fast",
+	    "collisionEffect":"onCollison,1d3"
+
+    }
+},
+{,
+	"class":"npc",
+	"name":"Gaurd",
+    "data":{
+	    "movement":"stationary",
+	    "speed":"0",
+	    "collisionEffect":"onCollison,2d3"
+    }
+},
+{,
+	"class":"entity",
+	"name":"Spike",
+    "data":{
+	    "movement":"stationary",
+	    "speed":"0",
+	    "collisionEffect":"onCollison, 1d3+3"
+    }
+}

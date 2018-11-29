@@ -7,9 +7,87 @@
         "data":{
             "attackEffect":"1d6+4",
             "blockEffect":"1d6+4",
-            "armourEffect":"1d6+4",
-            
+            "armourEffect":"1d6+4"
         },
         "equipslot":["hand", "foot", "chest"]
     },
+    {
+    	"name":"Apple",
+        "flavourtext":"food",
+        "class":"any",
+        "icon":"missing.png",
+        "data":{
+            "consumeEffect":"HealHP,1d3"
+        }
+    },
+    {
+    	"name":"Pancake",
+        "flavourtext":"food",
+        "class":"any",
+        "icon":"",
+        "data":{
+            "consumeEffect":"HealHP,1d6"
+        }
+    },
+    {
+    	"name":"Coffeee",
+        "flavourtext":"food",
+        "class":"any",
+        "icon":"",
+        "data":{
+            "consumeEffect":"HealMP,1d3"
+        }
+    },
+    {
+    	"name":"Maple Syrup",
+        "flavourtext":"food",
+        "class":"any",
+        "icon":"",
+        "data":{
+            "consumeEffect":"HealMP,1d6"
+        }
+    },
+    {
+    	"name":"Poutine",
+        "flavourtext":"legendary,food",
+        "class":"any",
+        "icon":"",
+        "data":{
+            "consumeEffect":"HealALL"
+        }
+    },
+    {
+        "name":"HockeyStick",
+        "flavourtext":"",
+        "class":"any",
+        "icon":"missing.png",
+        "data":{
+            "attackEffect":"1d6+4",
+            "blockEffect":"1d6+4",
+            "armourEffect":"1d6+4"
+        },
+        "equipslot":["hand"]
+    },
+    {
+        "name":"Icicle",
+        "flavourtext":"",
+        "class":"any",
+        "icon":"missing.png",
+        "data":{
+            "attackEffect":"1d6+4",
+            "blockEffect":"1d6+4",
+            "armourEffect":"1d6+4"
+        },
+        "equipslot":["hand"]
+    },
+    {
+        "name":"Skate",
+        "flavourtext":"",
+        "class":"any",
+        "icon":"missing.png",
+        "data":{
+            "moveEffect":"speed + 1",
+        },
+        "equipslot":["foot"]
+    }
 ]
