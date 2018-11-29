@@ -86,7 +86,7 @@
         "class":"any",
         "icon":"missing.png",
         "data":{
-            "moveEffect":"speed + 1",
+            "moveEffect":"speed + 1"
         },
         "equipslot":["foot"]
     }
