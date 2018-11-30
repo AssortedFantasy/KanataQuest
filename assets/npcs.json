@@ -1,3 +1,33 @@
+[
+    {
+        "name":"DevBob",
+        "type":"developer",
+        "ai":"dev",
+        "class":"friendly",
+        "icon":"missing.png",
+        "stats":{
+            "sight":"1d6+4",
+            "armour":"1d6+4",
+            "dodge":"1d6+4",
+            "hp":"1d6+4",
+            "mp":"1d6+4",
+            "strenght":"1d6+4",
+            "crit":"1d6+4",
+            "speed":"1d6+4",
+            "hpregen":"1d6+4",
+            "mpregen":"1d6+4",
+            "agility":"1d6+4",
+        },
+
+        "voicelines":[
+            "Hi I am a developer",
+        ]
+    },
+
+]
+
+
+
 {
 	"class":"Enemy",
 	"name":"bat",

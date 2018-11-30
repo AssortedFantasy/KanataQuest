@@ -2,15 +2,48 @@
     {
         "name":"DevStick",
         "flavourtext":"This item is supposed to have all effects, to show what is possible in the game",
-        "class":"any",
         "icon":"missing.png",
         "data":{
-            "attackEffect":"1d6+4",
-            "blockEffect":"1d6+4",
-            "armourEffect":"1d6+4"
+            "sight":"1d6+4",
+            "armour":"1d6+4",
+            "dodge":"1d6+4",
+            "hp":"1d6+4",
+            "mp":"1d6+4",
+            "attack":"1d6+4",
+            "crit":"1d6+4",
+            "speed":"1d6+4",
+            "hpregen":"1d6+4",
+            "mpregen":"1d6+4",
+            "agility":"1d6+4",
         },
-        "equipslot":["hand", "foot", "chest"]
+        "equipslots":["head", "hand", "chest", "leg"],
     },
+    {
+        "name":"DevPot",
+        "flavourtext":"This item has all consumable effects",
+        "icon":"missing.png",
+        "charges":"1d6+4",
+        "data":{
+            "sight":{"duration":"1d6+4","potency":"1d6+4"},
+            "armour":{"duration":"1d6+4","potency":"1d6+4"},
+            "attack":{"duration":"1d6+4","potency":"1d6+4"},
+            "crit":{"duration":"1d6+4","potency":"1d6+4"},
+            "speed":{"duration":"1d6+4","potency":"1d6+4"},
+            "regen":{"duration":"1d6+4","potency":"1d6+4"},
+            "agility":{"duration":"1d6+4","potency":"1d6+4"},
+            "dodge":{"duration":"1d6+4","potency":"1d6+4"},
+            "hp":{"potency":"1d6+4"},
+            "mp":{"potency":"1d6+4"},
+        }
+    },
+
+
+
+
+
+
+
+    
     {
     	"name":"Apple",
         "flavourtext":"food",
@@ -30,7 +63,7 @@
         }
     },
     {
-    	"name":"Coffeee",
+    	"name":"Coffee",
         "flavourtext":"food",
         "class":"any",
         "icon":"",

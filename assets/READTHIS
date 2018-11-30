@@ -4,9 +4,21 @@ Current item design:
 Items are in a big json file and have names which work like this:
 
 <person's> <legendary/epic/unusual/rare/default/poor> <adjective> <item> [of the] <profession>
-Legendary's have all the flavour text.
-Epics have everything except the owner.
-Unusuals have everything except [of the professions]
-rares only have adjectives
-defaults are only the item
-poors have bad adjectives
+Legendary's have all the flavour text. 3X Stats
+Epics have everything except the owner. 2X Stats
+Unusuals have everything except [of the professions] 3d3+3 on a random stat ( of all stats)
+rares only have adjectives +1 every stat
+defaults are only the item / sameboys
+poors have bad adjectives -1 every stat
+
+
+Consumables
+<delicious/tasty/bountiful/doubious/default/rotten/sour>
+<person's> <class> <item>
+
+Delicious has names, 2x Stats, 2X Charges
+Tasty, 2x stats
+bountiful 2x charges
+doubious 2 random additional stats , 3d3-6
+rotten -2 every stat
+sour -1 every stat
