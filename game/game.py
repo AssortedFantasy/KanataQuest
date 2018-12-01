@@ -10,8 +10,8 @@ ctypes.windll.user32.SetProcessDPIAware()
 def draw_loop(game: states.GameState):
     # Handles all drawing for the game!
     screen = pg.display.get_surface()
-    dx, dy = screen.get_size()
-    gx, gy = game.res
+    dx, dy = screen.get_rect().center
+    gx, gy = game.display_rect.center
     pg.display.get_surface().blit(game.main_display, (dx-gx, dy-gy))
     pg.display.flip()
 
