@@ -1,45 +1,53 @@
 import pygame as pg
+from . import states
 from . import colours
 
-# Use this clock for everything which is that needs to be done!
-main_clock = pg.time.Clock()
 
-# GLOBAL PARAMETERS
-default_fps = 30
-default_res = 640, 480
-default_display_params = pg.RESIZABLE | 0
+def draw_loop(game):
+    # Handles all drawing for the game!
+    pass
 
 
-def main():
-    run_game = True
-    while run_game:
-        for event in pg.event.get():
-            if event.type == pg.QUIT:
-                run_game = False
-            if event.type == pg.VIDEORESIZE:
-                pg.display.set_mode(event.size, default_display_params)
+def event_handler(game: states.GameState):
+    # Handles all events for the game!
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
+            game.is_running = False
+        if event.type == pg.ACTIVEEVENT:
+            print(event)
+        if event.type == pg.VIDEORESIZE:
+            pg.display.set_mode(event.size, game.display_params)
+            game.res = event.size
 
-        pg.display.flip()
-        main_clock.tick(default_fps)
+
+def main(game):
+    while game.is_running:
+        event_handler(game)
+        game.clock.tick(game.fps)
 
 
 # This is the entrance code for this file.
 def launch():
+    # First We need to run initialization.
     pg.init()
-
     try:
         splash_file = open("./assets/images/splash.png", mode="rb")
     except FileNotFoundError:
         splash_file = None
-        print("Missing splash screen picture! Is the assets folder missing?")
+        print("Error: Missing splash screen picture! Is the assets folder missing or path incorrect?")
         exit(-1)
 
+    # First we display a splash screen
     splash_screen = pg.image.load(splash_file)
-    main_display = pg.display.set_mode(default_res, default_display_params)
-
-    pg.Surface.blit(splash_screen, main_display, main_display.get_rect())
+    main_display = pg.display.set_mode(splash_screen.get_rect().size)
+    main_display.blit(splash_screen, main_display.get_rect())
     pg.display.flip()
-    main()
+
+    # Then we create a new GameState object, this is going to be the runtime.
+    game = states.GameState()
+
+    # Then we launch it!
+    main(game)
 
 
 if __name__ == "__main__":
