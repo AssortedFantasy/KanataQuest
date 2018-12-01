@@ -1,11 +1,19 @@
 import pygame as pg
+import ctypes
 from . import states
 from . import colours
 
+# From https://gamedev.stackexchange.com/questions/105750/pygame-fullsreen-display-issue
+ctypes.windll.user32.SetProcessDPIAware()
 
-def draw_loop(game):
+
+def draw_loop(game: states.GameState):
     # Handles all drawing for the game!
-    pass
+    screen = pg.display.get_surface()
+    dx, dy = screen.get_size()
+    gx, gy = game.res
+    pg.display.get_surface().blit(game.main_display, (dx-gx, dy-gy))
+    pg.display.flip()
 
 
 def event_handler(game: states.GameState):
@@ -16,12 +24,15 @@ def event_handler(game: states.GameState):
         if event.type == pg.ACTIVEEVENT:
             print(event)
         if event.type == pg.VIDEORESIZE:
-            pg.display.set_mode(event.size, game.display_params)
-            game.res = event.size
+            new_screen = pg.display.set_mode(event.size, game.display_params)
+            new_screen.fill(game.background)
+            game.screen_res_out_of_date = True
 
 
 def main(game):
     while game.is_running:
+        draw_loop(game)
+        # pg.draw.circle(game.main_display, colours.Red, (0, 0), 100, 10)
         event_handler(game)
         game.clock.tick(game.fps)
 
@@ -37,16 +48,23 @@ def launch():
         print("Error: Missing splash screen picture! Is the assets folder missing or path incorrect?")
         exit(-1)
 
-    # First we display a splash screen
-    splash_screen = pg.image.load(splash_file)
-    main_display = pg.display.set_mode(splash_screen.get_rect().size)
-    main_display.blit(splash_screen, main_display.get_rect())
-    pg.display.flip()
-
-    # Then we create a new GameState object, this is going to be the runtime.
+    # game is the GameState, it is very important
     game = states.GameState()
 
-    # Then we launch it!
+    # We first just make the display!
+    screen = pg.display.set_mode()
+    pg.display.set_caption("Katana Quest")
+    screen.fill((255, 255, 255))
+    pg.display.flip()
+
+    # Now we write the splash screen to the game!
+    game.fix_screen_resolution(force=True)
+    splash_screen = pg.image.load(splash_file)
+    sx, sy = splash_screen.get_rect().center
+    gx, gy = game.main_display.get_rect().center
+    game.main_display.blit(splash_screen, (gx-sx, gy-sy))
+
+    # Now we launch the game!
     main(game)
 
 

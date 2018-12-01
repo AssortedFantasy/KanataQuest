@@ -6,6 +6,7 @@ import pygame as pg
 default_fps = 30
 default_res = 640, 480
 default_display_params = pg.RESIZABLE | 0
+default_background_colour = (255, 255, 255)  # White
 
 
 class GameState:
@@ -16,8 +17,23 @@ class GameState:
     def __init__(self):
         self.is_active = True
         self.is_running = True
-        self.fps = default_fps   # Probably don't set to 0
-        self.res = default_res   # Width , Height
+
+        self.background = default_background_colour  # Background colour
+        self.res = default_res  # Width , Height
+        self.screen_res_out_of_date = True
         self.display_params = default_display_params
-        self.main_display = pg.display.get_surface()
-        self.clock = pg.time.Clock()
+        self.main_display = pg.Surface(self.res)
+        self.display_rect = self.main_display.get_rect()
+
+        self.fps = default_fps   # Probably don't set to 0
+        self.clock = pg.time.Clock()  # Clock object for this game state
+
+    def fix_screen_resolution(self, force=False):
+        # Note this actually wipes the screen!
+        if self.screen_res_out_of_date or force:
+            self.res = pg.display.get_surface().get_rect().size
+            self.main_display = pg.Surface(self.res)
+            self.display_rect = self.main_display.get_rect()
+            self.main_display.fill(self.background)
+            return True
+        return False
