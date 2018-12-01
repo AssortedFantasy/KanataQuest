@@ -272,7 +272,7 @@
     {
         "name":"Soda Hat",
         "flavourtext":"HE WAS NUMBER ONE",
-        "icon":"missing.png",
+        "icon":"hat.png",
         "data":{
             "hp":"1d3+4",
             "speed":"1d3+2"
@@ -282,7 +282,7 @@
     {
         "name":"Glasses",
         "flavourtext":"Luxotica's Monopoly grows ever stronger",
-        "icon":"missing.png",
+        "icon":"glasses.png",
         "data":{
             "sight":"1d3+3",
             "dodge":"1d3+2"
@@ -292,7 +292,7 @@
     {
         "name":"Fake Moustache",
         "flavourtext":"Nobody will ever see you coming",
-        "icon":"missing.png",
+        "icon":"moustache.png",
         "data":{
             "dodge":"2d6",
             "sight":"1d6"
@@ -302,7 +302,7 @@
     {
         "name":"Scarf",
         "flavourtext":"Limited time Eng Scarf",
-        "icon":"missing.png",
+        "icon":"scarf.png",
         "data":{
             "dodge":"1d6",
             "armour":"1d3"
@@ -314,7 +314,7 @@
     {
         "name":"Jacket",
         "flavourtext":"Thick jacket to protect against the cold",
-        "icon":"missing.png",
+        "icon":"jacket.png",
         "data":{
             "armour":"2d4+2"
         },
@@ -323,7 +323,7 @@
     {
         "name":"Shirt",
         "flavourtext":"Free marketing",
-        "icon":"missing.png",
+        "icon":"shirt.png",
         "data":{
             "armour":"1d5+2",
             "dodge":"1d3+2"
@@ -333,7 +333,7 @@
     {
         "name":"Hoodie",
         "flavourtext":"A CompE 2018 hoodie",
-        "icon":"missing.png",
+        "icon":"hoodie.png",
         "data":{
             "armour":"2d5+2",
             "dodge":"1d3+2"
