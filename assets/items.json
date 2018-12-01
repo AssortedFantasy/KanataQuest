@@ -14,9 +14,9 @@
             "speed":"1d6+4",
             "hpregen":"1d6+4",
             "mpregen":"1d6+4",
-            "agility":"1d6+4",
+            "agility":"1d6+4"
         },
-        "equipslots":["head", "hand", "chest", "leg"],
+        "equipslots":["head", "hand", "chest", "leg"]
     },
     {
         "name":"DevPot",
@@ -33,94 +33,311 @@
             "agility":{"duration":"1d6+4","potency":"1d6+4"},
             "dodge":{"duration":"1d6+4","potency":"1d6+4"},
             "hp":{"potency":"1d6+4"},
-            "mp":{"potency":"1d6+4"},
+            "mp":{"potency":"1d6+4"}
         }
     },
 
 
-
-
-
-
-
-    
     {
     	"name":"Apple",
-        "flavourtext":"food",
-        "class":"any",
-        "icon":"missing.png",
+        "flavourtext":"A delicious McIntosh Red apple",
+        "icon":"apple.png",
+        "charges":"1d3",
         "data":{
-            "consumeEffect":"HealHP,1d3"
+            "hp":{"potency":"1d6+1"}
         }
     },
     {
     	"name":"Pancake",
-        "flavourtext":"food",
-        "class":"any",
-        "icon":"",
+        "flavourtext":"Part of a nutritious breakfast",
+        "icon":"pancake.png",
+        "charges":"1d5",
         "data":{
-            "consumeEffect":"HealHP,1d6"
+            "hp":{"potency":"1d6+10"}
         }
     },
     {
     	"name":"Coffee",
-        "flavourtext":"food",
-        "class":"any",
-        "icon":"",
+        "flavourtext":"Sleep is for the weak",
+        "icon":"coffee.png",
+        "charges":"1d3",
         "data":{
-            "consumeEffect":"HealMP,1d3"
+            "speed":{"duration":"1d6+4","potency":"1d6+1"}
+        }
+    },
+    {
+    	"name":"Pinnapple Juice",
+        "flavourtext":"It's Happy Hour",
+        "icon":"pinnapple.png",
+        "data":{
+            "mpregen":{"duration":"1d6","potency":"1d6+10"}
+        }
+    },
+    {
+    	"name":"Ketchup Chips",
+        "flavourtext":"What obesity epidemic?",
+        "icon":"ketchup.png",
+        "data":{
+            "hpregen":{"duration":"1d6","potency":"1d6+10"}
+        }
+    },
+    {
+    	"name":"Carrot Juice",
+        "flavourtext":"Good for the eyes",
+        "icon":"carrot.png",
+        "data":{
+            "sight":{"duration":"1d6","potency":"1d6+10"}
+        }
+    },
+    {
+    	"name":"Banana",
+        "flavourtext":"Cavendish special",
+        "icon":"banana.png",
+        "data":{
+            "attack":{"duration":"1d6","potency":"1d6+10"}
+        }
+    },
+    {
+    	"name":"Milk",
+        "flavourtext":"Strong Bones are all that matter",
+        "icon":"milk.png",
+        "data":{
+            "armour":{"duration":"1d6","potency":"1d6+10"}
+        }
+    },
+    {
+    	"name":"Doritos",
+        "flavourtext":"With great power comes copious amounts of dust",
+        "icon":"doritos.png",
+        "data":{
+            "attack":{"duration":"1d6","potency":"1d6+10"}
+        }
+    },
+    {
+    	"name":"Mountain Dew",
+        "flavourtext":"Contains essentail nutrients for computer enthusiasts",
+        "icon":"mountain_dew.png",
+        "data":{
+            "crit":{"duration":"1d6","potency":"1d6+10"}
         }
     },
     {
     	"name":"Maple Syrup",
-        "flavourtext":"food",
-        "class":"any",
-        "icon":"",
+        "flavourtext":"A small sample from the Federal Reserve",
+        "icon":"maple_syrup.png",
+        "charges":"1d5",
         "data":{
-            "consumeEffect":"HealMP,1d6"
+            "mp":{"potency":"1d6+4"}
         }
     },
     {
     	"name":"Poutine",
-        "flavourtext":"legendary,food",
-        "class":"any",
-        "icon":"",
+        "flavourtext":"The penultimate form of potato",
+        "icon":"poutine.png",
         "data":{
-            "consumeEffect":"HealALL"
+            "hp":{"potency":"1d6+100"},
+            "mp":{"potency":"1d6+100"}
         }
     },
     {
-        "name":"HockeyStick",
-        "flavourtext":"",
-        "class":"any",
-        "icon":"missing.png",
+    	"name":"Beer",
+        "flavourtext":"It's actually Happy Hour",
+        "icon":"beer.png",
         "data":{
-            "attackEffect":"1d6+4",
-            "blockEffect":"1d6+4",
-            "armourEffect":"1d6+4"
+            "sight":{"duration":"1d6","potency":"1d6-10"},
+            "agility":{"duration":"1d6","potency":"1d5-10"},
+            "attack":{"duration":"1d6","potency":"1d6+2"},
+            "armour":{"duration":"1d6","potency":"1d4+2"}
+        }
+    },
+
+
+    {
+        "name":"HockeyStick",
+        "flavourtext":"Classic fibreglass glory",
+        "icon":"stick.png",
+        "data":{
+            "attack":"1d6",
+            "crit":"1d6"
         },
         "equipslot":["hand"]
     },
     {
         "name":"Icicle",
-        "flavourtext":"",
-        "class":"any",
-        "icon":"missing.png",
+        "flavourtext":"Don't lick it",
+        "icon":"icicle.png",
         "data":{
-            "attackEffect":"1d6+4",
-            "blockEffect":"1d6+4",
-            "armourEffect":"1d6+4"
+            "attack":"2d3",
+            "speed":"1d6-6",
+            "crit":"2d3"
         },
         "equipslot":["hand"]
     },
     {
+        "name":"Sword",
+        "flavourtext":"Sharp to the touch",
+        "icon":"sword.png",
+        "data":{
+            "attack":{"potency":"1d4+2"},
+            "crit":{"potency":"2d3"},
+            "dodge":{"potency":"1d6"}
+        },
+        "equipslot":["hand"]
+    },
+
+
+    {
+        "name":"Plain Ring",
+        "flavourtext":"Just to flex on the less fashionable",
+        "icon":"ring.png",
+        "data":{
+            "mp":"1d4+4"
+        },
+        "equipslot":["hand"]
+    },
+    {
+        "name":"Engineering Ring",
+        "flavourtext":"It better be worth $40,000",
+        "icon":"eng_ring.png",
+        "data":{
+            "hpregen":"1d4",
+            "mpregen":"1d4"
+        },
+        "equipslot":["hand"]
+    },
+    {
+        "name":"Mitts",
+        "flavourtext":"For if the cold really did bother you",
+        "icon":"mitts.png",
+        "data":{
+            "armour":"1d3",
+            "agility":"1d3"
+        },
+        "equipslot":["hand"]
+    },
+
+
+    {
         "name":"Skate",
         "flavourtext":"",
         "class":"any",
-        "icon":"missing.png",
+        "icon":"skate.png",
         "data":{
-            "moveEffect":"speed + 1"
+            "speed":"1d3+2"
         },
         "equipslot":["foot"]
+    },
+    {
+        "name":"Boots",
+        "flavourtext":"Steel toes, no slip, CSTS has taught you well",
+        "icon":"boots.png",
+        "data":{
+            "dodge":"1d3-6",
+            "armour":"1d3+3"
+        },
+        "equipslot":["foot"]
+    },
+    {
+        "name":"Snow Shoes",
+        "flavourtext":"The pioneers used to use these for kilometers",
+        "icon":"snow_shoes.png",
+        "data":{
+            "dodge":"1d3+6",
+            "speed":"1d3"
+        },
+        "equipslot":["foot"]
+    },
+
+
+
+    {
+        "name":"Touque",
+        "flavourtext":"A small hat with a poofball",
+        "icon":"touque.png",
+        "data":{
+            "mp":"1d3+3",
+            "armour":"1d3+2"
+        },
+        "equipslot":["head"]
+    },
+    {
+        "name":"Helmet",
+        "flavourtext":"Regulation Hockey Helmet, complete with cage",
+        "icon":"helemet.png",
+        "data":{
+            "armour":"1d6+4"
+        },
+        "equipslot":["head"]
+    },
+    {
+        "name":"Soda Hat",
+        "flavourtext":"HE WAS NUMBER ONE",
+        "icon":"missing.png",
+        "data":{
+            "hp":"1d3+4",
+            "speed":"1d3+2"
+        },
+        "equipslot":["head"]
+    },
+    {
+        "name":"Glasses",
+        "flavourtext":"Luxotica's Monopoly grows ever stronger",
+        "icon":"missing.png",
+        "data":{
+            "sight":"1d3+3",
+            "dodge":"1d3+2"
+        },
+        "equipslot":["head"]
+    },
+    {
+        "name":"Fake Moustache",
+        "flavourtext":"Nobody will ever see you coming",
+        "icon":"missing.png",
+        "data":{
+            "dodge":"2d6",
+            "sight":"1d6"
+        },
+        "equipslot":["head"]
+    },
+    {
+        "name":"Scarf",
+        "flavourtext":"Limited time Eng Scarf",
+        "icon":"missing.png",
+        "data":{
+            "dodge":"1d6",
+            "armour":"1d3"
+        },
+        "equipslot":["head"]
+    },
+
+    
+    {
+        "name":"Jacket",
+        "flavourtext":"Thick jacket to protect against the cold",
+        "icon":"missing.png",
+        "data":{
+            "armour":"2d4+2"
+        },
+        "equipslot":["body"]
+    },
+    {
+        "name":"Shirt",
+        "flavourtext":"Free marketing",
+        "icon":"missing.png",
+        "data":{
+            "armour":"1d5+2",
+            "dodge":"1d3+2"
+        },
+        "equipslot":["body"]
+    },
+    {
+        "name":"Hoodie",
+        "flavourtext":"A CompE 2018 hoodie",
+        "icon":"missing.png",
+        "data":{
+            "armour":"2d5+2",
+            "dodge":"1d3+2"
+        },
+        "equipslot":["body"]
     }
 ]
