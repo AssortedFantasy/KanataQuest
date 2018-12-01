@@ -9,6 +9,17 @@ default_display_params = pg.RESIZABLE | 0
 default_background_colour = (255, 255, 255)  # White
 
 
+class Settings:
+    def __init__(self):
+        self.up = [pg.K]
+        self.down = []
+        self.left = []
+        self.right = []
+        self.inventory = []
+        self.select = []
+        self.go_back = []
+
+
 class GameState:
     """
     GameState is large file which serves to hold everything that is relevant to the game and running it.
