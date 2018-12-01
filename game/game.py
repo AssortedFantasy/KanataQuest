@@ -1,30 +1,44 @@
-import pygame as py
+import pygame as pg
 from . import colours
 
+# Use this clock for everything which is that needs to be done!
+main_clock = pg.time.Clock()
+
 # GLOBAL PARAMETERS
-fps = 30
-res = width, height = 1280, 720
+default_fps = 30
+default_res = 640, 480
+default_display_params = pg.RESIZABLE | 0
 
 
 def main():
-    pass
+    run_game = True
+    while run_game:
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                run_game = False
+            if event.type == pg.VIDEORESIZE:
+                pg.display.set_mode(event.size, default_display_params)
 
-
-def event_loop():
-    for event in py.event.get():
-        pass
+        pg.display.flip()
+        main_clock.tick(default_fps)
 
 
 # This is the entrance code for this file.
 def launch():
-    py.init()
-    GAME_RUN = True
-    main_display = py.display.set_mode(res)
-    try:
-        splash = open("../assets/images/splash.png", mode="rb")
-    except FileNotFoundError:
-        print("Missing splash screen picture, using blank")
+    pg.init()
 
+    try:
+        splash_file = open("./assets/images/splash.png", mode="rb")
+    except FileNotFoundError:
+        splash_file = None
+        print("Missing splash screen picture! Is the assets folder missing?")
+        exit(-1)
+
+    splash_screen = pg.image.load(splash_file)
+    main_display = pg.display.set_mode(default_res, default_display_params)
+
+    pg.Surface.blit(splash_screen, main_display, main_display.get_rect())
+    pg.display.flip()
     main()
 
 

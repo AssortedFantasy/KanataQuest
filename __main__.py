@@ -1,2 +1,2 @@
 import game.game
-game.launch()
+game.game.launch()
