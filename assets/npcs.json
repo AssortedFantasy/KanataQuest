@@ -16,71 +16,117 @@
             "speed":"1d6+4",
             "hpregen":"1d6+4",
             "mpregen":"1d6+4",
-            "agility":"1d6+4",
+            "agility":"1d6+4"
         },
 
         "voicelines":[
-            "Hi I am a developer",
+            "Hi I am a developer"
         ]
     },
+    {
+        "name":"Bat",
+        "type":"enemy",
+        "ai":"random",
+        "class":"enemy",
+        "icon":"bat.png",
+        "stats":{
+            "sight":"1d6+4",
+            "armour":"1d6+4",
+            "dodge":"1d6+4",
+            "hp":"1d6+4",
+            "mp":"1d6+4",
+            "strenght":"1d6+4",
+            "crit":"1d6+4",
+            "speed":"1d6+4",
+            "hpregen":"1d6+4",
+            "mpregen":"1d6+4",
+            "agility":"1d6+4"
+
+        }
+    },
+    {
+        "name":"Skeleton",
+        "type":"enemy",
+        "ai":"random",
+        "class":"enemy",
+        "icon":"bat.png",
+        "stats":{
+            "sight":"1d6+4",
+            "armour":"1d6+4",
+            "dodge":"1d6+4",
+            "hp":"1d6+4",
+            "mp":"1d6+4",
+            "strenght":"1d6+4",
+            "crit":"1d6+4",
+            "speed":"1d6+4",
+            "hpregen":"1d6+4",
+            "mpregen":"1d6+4",
+            "agility":"1d6+4"
+
+        }
+    },
+    {
+        "name":"Zombie",
+        "type":"enemy",
+        "ai":"random",
+        "class":"enemy",
+        "icon":"bat.png",
+        "stats":{
+            "sight":"1d6+4",
+            "armour":"1d6+4",
+            "dodge":"1d6+4",
+            "hp":"1d6+4",
+            "mp":"1d6+4",
+            "strenght":"1d6+4",
+            "crit":"1d6+4",
+            "speed":"1d6+4",
+            "hpregen":"1d6+4",
+            "mpregen":"1d6+4",
+            "agility":"1d6+4"
+
+        }
+    },
+    {
+        "name":"Wraith",
+        "type":"enemy",
+        "ai":"random",
+        "class":"enemy",
+        "icon":"bat.png",
+        "stats":{
+            "sight":"1d6+4",
+            "armour":"1d6+4",
+            "dodge":"1d6+4",
+            "hp":"1d6+4",
+            "mp":"1d6+4",
+            "strenght":"1d6+4",
+            "crit":"1d6+4",
+            "speed":"1d6+4",
+            "hpregen":"1d6+4",
+            "mpregen":"1d6+4",
+            "agility":"1d6+4"
+
+        }
+    },
+    {
+        "name":"Gaurd",
+        "type":"friendly",
+        "ai":"stationary",
+        "class":"friendly",
+        "icon":"bat.png",
+        "stats":{
+            "sight":"1d6+4",
+            "armour":"1d6+4",
+            "dodge":"1d6+4",
+            "hp":"1d6+4",
+            "mp":"1d6+4",
+            "strenght":"1d6+4",
+            "crit":"1d6+4",
+            "speed":"1d6+4",
+            "hpregen":"1d6+4",
+            "mpregen":"1d6+4",
+            "agility":"1d6+4"
+
+        }
+    }
 
 ]
-
-
-
-{
-	"class":"Enemy",
-	"name":"bat",
-    "data":{
-        "attackEffect":"1d3",
-	    "movement":"random",
-	    "speed":"normal"
-    }
-},
-{
-	"class":"Enemy",
-	"name":"skeleton",
-    "data":{
-	    "collisionEffect":"1d4 + 2",
-	    "speed":"normal",
-	    "movement":"direct"
-    }
-},
-{
-	"class":"Enemy",
-	"name":"Zombie",
-    "data":{
-	    "movement":"direct",
-	    "speed":"slow",
-	    "collisionEffect":"2d3"
-
-    }
-},
-{,
-	"class":"Enemy",
-	"name":"Wraith",
-    "data":{
-	    "movement":"direct",
-	    "speed":"fast",
-	    "collisionEffect":"onCollison,1d3"
-
-    }
-},
-{,
-	"class":"npc",
-	"name":"Gaurd",
-    "data":{
-	    "movement":"stationary",
-	    "speed":"0",
-	    "collisionEffect":"onCollison,2d3"
-    }
-},
-{,
-	"class":"entity",
-	"name":"Spike",
-    "data":{
-	    "movement":"stationary",
-	    "speed":"0",
-	    "collisionEffect":"onCollison, 1d3+3"
-    }
-}

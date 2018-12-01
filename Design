@@ -5,6 +5,17 @@ This is the file designating the entirety of the game design.
 
 How is the game actually played?
 
+    -Maps
+        -Store Levels
+    -Levels
+        -Store numpy array of blockID's to render the background
+        -Stores List for Entities
+            - Enemies and NPC's
+        -Stores List for Tile-Entities
+            - Tiles that can be interacted with
+        - Quadtrees should be helpful here
+    - The Map won't handle the player character in any capacity
+
 Mabye don't write in this file.
 
 # GAME DESIGN
