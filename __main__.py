@@ -1,1 +1,2 @@
-# Main Menu Loop
+import game.game
+game.launch()
