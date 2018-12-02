@@ -79,9 +79,9 @@ class MainMenu(Menu):
         logo = pygame.transform.scale(logo, (int(scalex * logo.get_size()[0]), int(scaley * logo.get_size()[1])))
         # self.menu = pygame.Surface((width, height))
 
-        self.buttons.append(Button("New_Game", 0.5, 0.5, 100, 50, "New Game", (255, 0, 0), (255, 255, 0)))
-        self.buttons.append(Button("Continue", 0.5, 0.55, 100, 50, "Continue", (0, 0, 255), (0, 255, 0)))
-        self.buttons.append(Button("Quit", 0.5, 0.6, 100, 50, "Quit", (255, 0, 255), (0, 255, 255)))
+        self.buttons.append(Button("New_Game", 0.5, 0.5, 400, 50, "New Game", (255, 0, 0), (255, 255, 0)))
+        self.buttons.append(Button("Continue", 0.5, 0.55, 400, 50, "Continue", (0, 0, 255), (0, 255, 0)))
+        self.buttons.append(Button("Quit", 0.5, 0.6, 400, 50, "Quit", (255, 0, 255), (0, 255, 255)))
 
         self.update()
         gx, gy = self.menu.get_size()
@@ -95,14 +95,17 @@ class Button:
         self.name = name
         self.rel_x = rel_x
         self.rel_y = rel_y
-        self.text = text
+        self.text = " " + text + " "
         pygame.font.init()
-        self.font = pygame.font.SysFont("arial",50)
+        self.font = pygame.font.SysFont("impact", width // len(self.text))
+        self.width = pygame.font.Font.size(self.font, self.text)[0]
+        """"
         text_width = pygame.font.Font.size(self.font, self.text)[0]
-        if text_width < width:
-            self.width = text_width
+        if text_width > width:
+            self.width = int(text_width * 1.2)
         else:
             self.width = width
+        """
         self.height = height
 
     def get_surf(self):
