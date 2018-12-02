@@ -3,6 +3,7 @@ import ctypes
 import sys
 from pathlib import Path
 from . import states
+from . import button
 from . import colours
 
 # From https://gamedev.stackexchange.com/questions/105750/pygame-fullsreen-display-issue
@@ -39,6 +40,7 @@ def main(game):
         draw_loop(game)
         event_handler(game)
         game.clock.tick(game.fps)
+        menu = button.Menu(1920, 1080, game)
 
 
 # This is the entrance code for this file.
