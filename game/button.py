@@ -4,6 +4,44 @@ from pathlib import Path
 
 class Menu:
 
+    def __init__(self, game_state, bg_path="./assets/images/tmp_background.png"):
+        self.buttons = []
+        self.game = game_state
+        self.width, self.height = game_state.main_display.get_size()
+        background_location = Path(bg_path)
+        try:
+            background_file = open(background_location, mode="rb")
+        except FileNotFoundError:
+            background_file = None
+            print("Error: Missing main menu picture! Is the assets folder missing or path incorrect?"
+                  "\nPATH={}".format(background_location))
+            exit(-1)
+        self.menu = pygame.image.load(background_file)
+        self.menu = pygame.transform.scale(self.menu, self.game.main_display.get_size())
+        self.update()
+
+    def update(self):
+        for button in self.buttons:
+            text = button.get_rect()
+            gx, gy = self.game.main_display.get_size()
+            button.rect = self.menu.blit(text, (gx * button.rel_x - button.width / 2,
+                                                gy * button.rel_y - button.height / 2))
+        self.game.main_display.blit(self.menu, (0, 0))
+
+    def add_button(self, button):
+        self.buttons.append(button)
+        self.update()
+
+    def is_clicked(self):
+        for event in self.game.event_queue:
+            if event.type == pygame.MOUSEBUTTONUP:
+                for button in self.buttons:
+                    if button.rect.collidepoint(pygame.mouse.get_pos()):
+                        return button.name
+            # REMOVE EVENT FROM QUEUE
+
+
+class MainMenu(Menu):
     def __init__(self, game_state):
         self.buttons = []
         self.game = game_state
@@ -32,22 +70,6 @@ class Menu:
         self.update()
         gx, gy = self.menu.get_size()
         self.game.main_display.blit(logo, (gx/2 - logo.get_size()[0] / 2, gy / 3 - logo.get_size()[1]))
-
-    def update(self):
-        for button in self.buttons:
-            text = button.get_rect()
-            gx, gy = self.game.main_display.get_size()
-            button.rect = self.menu.blit(text, (gx * button.rel_x - button.width / 2,
-                                                gy * button.rel_y - button.height / 2))
-        self.game.main_display.blit(self.menu, (0, 0))
-
-    def is_clicked(self):
-        for event in self.game.event_queue:
-            if event.type == pygame.MOUSEBUTTONUP:
-                for button in self.buttons:
-                    if button.rect.collidepoint(pygame.mouse.get_pos()):
-                        return button.name
-            # REMOVE EVENT FROM QUEUE
 
 class Button:
 
