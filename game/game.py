@@ -35,6 +35,7 @@ def event_handler(game: states.GameState):
 
 
 def main(game):
+    # Starts Main Menu
     menu = button.MainMenu(game)
     while game.is_running:
         # pg.draw.circle(game.main_display, colours.Red, (0, 0), 100, 10)

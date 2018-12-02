@@ -20,6 +20,7 @@ class Menu:
         self.menu = pygame.transform.scale(self.menu, self.game.main_display.get_size())
         self.update()
 
+    # Draws the button again
     def update(self):
         for button in self.buttons:
             text = button.get_surf()
@@ -28,10 +29,12 @@ class Menu:
                                                 gy * button.rel_y - button.height / 2))
         self.game.main_display.blit(self.menu, (0, 0))
 
+    # Adds a button to the menu and updates the menu
     def add_button(self, button):
         self.buttons.append(button)
         self.update()
 
+    # Returns the name of a button in the menu if it is clicked
     def is_clicked(self):
         for event in self.game.event_queue:
             if event.type == pygame.MOUSEBUTTONUP:
@@ -40,8 +43,20 @@ class Menu:
                         return button.name
             # REMOVE EVENT FROM QUEUE
 
+    # Returns all clicked buttons if that's even useful
+    def all_clicked(self):
+        events = []
+        for event in self.game.event_queue:
+            if event.type == pygame.MOUSEBUTTONUP:
+                for button in self.buttons:
+                    if button.rect.collidepoint(pygame.mouse.get_pos()):
+                        events.append(button.name)
+            # REMOVE EVENT FROM QUEUE
+        return events
+
 
 class MainMenu(Menu):
+
     def __init__(self, game_state):
         self.buttons = []
         self.game = game_state
@@ -63,6 +78,7 @@ class MainMenu(Menu):
         scalex, scaley = dim1[0] / self.menu.get_size()[0], dim1[1] / self.menu.get_size()[1]
         logo = pygame.transform.scale(logo, (int(scalex * logo.get_size()[0]), int(scaley * logo.get_size()[1])))
         # self.menu = pygame.Surface((width, height))
+
         self.buttons.append(Button("New_Game", 0.5, 0.5, 100, 50, "New Game"))
         self.buttons.append(Button("Continue", 0.5, 0.55, 100, 50, "Continue"))
         self.buttons.append(Button("Quit", 0.5, 0.6, 100, 50, "Quit"))
