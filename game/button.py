@@ -1,4 +1,6 @@
 import pygame
+from pathlib import Path
+
 
 class Menu:
 
@@ -7,15 +9,27 @@ class Menu:
         self.game = game_state
         self.width = width
         self.height = height
+        background_location = Path("./assets/images/tmp_background.png")
+        try:
+            background_file = open(background_location, mode="rb")
+        except FileNotFoundError:
+            background_file = None
+            print("Error: Missing splash screen picture! Is the assets folder missing or path incorrect?")
+            exit(-1)
+        self.menu = pygame.image.load(background_file)
 
-    def draw_buttons(self):
+    def update(self):
         for button in self.buttons:
             (rect, text) = button.get_rect(self.width, self.height)
-            self.game.main_display.blit()
+            sx, sy = rect.center
+            gx, gy = self.menu.get_rect().center
+            self.menu.blit(rect, (gx-sx, gy-sy))
+            self.menu.blit(text, (gx-sx, gy-sy))
+
 
 class Button:
 
-    def __init__(self, rel_x, rel_y, width, height, game_state, button_colour = (255,255,255), border_colour=(0,0,0), text="") :
+    def __init__(self, rel_x, rel_y, width, height, button_colour = (255,255,255), border_colour=(0,0,0), text="") :
         self.button_colour = button_colour
         self.border_colour = border_colour
         self.rel_x = rel_x
