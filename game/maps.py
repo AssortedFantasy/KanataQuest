@@ -1,4 +1,4 @@
-from . import quad_tree
+import quad_tree
 import random
 import numpy as np
 import pygame as pg
