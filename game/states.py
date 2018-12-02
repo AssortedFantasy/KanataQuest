@@ -29,6 +29,8 @@ class GameState:
         self.is_active = True
         self.is_running = True
 
+        self.current_state = "MENU"
+
         self.background = default_background_colour  # Background colour
         self.res = default_res  # Width , Height
         self.screen_res_out_of_date = True

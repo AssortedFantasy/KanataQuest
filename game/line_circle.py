@@ -1,15 +1,72 @@
-import numpy as np
-import math
+# import numpy as np
+# import math
+
+
 # Implements brensenhams line and circle algorithms, returns a list of points.
 
 
-# Line algorithm, points are invariably ordered from (x0,y0) -> (x1,y1)
+
+def sign(x):
+    if x>=0:
+        return 1
+    else:
+        return -1
+
+
+# Brensenhams Line algorithm, points are invariably ordered from (x0,y0) -> (x1,y1)
 # Does not nessesarily need integer points, but will return integer points.
 def line(x0,y0,x1,y1):
-    pass
+    dx = x1-x0
+    dy = y1-y0
 
+    points = [(x0,y0)]
 
+    # Step in X and Step in Y
+    sx = sign(dx)
+    sy = sign(dy)
 
+    if abs(dx) >= abs(dy):
+        # Sideways moving algorithm
+        A = abs(dx)
+        B = -abs(dy)
+        D = A + 2*B
+
+        x = x0
+        y = y0
+
+        P = 2*(A+B)
+        Q = 2*B
+
+        while x != x1:
+            x += sx
+            if D < 0:
+                y += sy
+                D += P
+            else:
+                D += Q
+            points.append((x, y))
+    else:
+        # Reverse the x's and y's above
+        # Sideways moving algorithm
+        A = abs(dy)
+        B = -abs(dx)
+        D = A + 2 * B
+
+        x = x0
+        y = y0
+
+        P = 2 * (A + B)
+        Q = 2 * B
+
+        while y != y1:
+            y += sy
+            if D < 0:
+                x += sy
+                D += P
+            else:
+                D += Q
+            points.append((x, y))
+    return points
 
 # Returns all points on a circle, rounded to the nearest integer, around a point
 # x0,y0 of radius r.
