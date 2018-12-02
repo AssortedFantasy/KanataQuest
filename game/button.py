@@ -87,6 +87,14 @@ class MainMenu(Menu):
         gx, gy = self.menu.get_size()
         self.game.main_display.blit(logo, (gx/2 - logo.get_size()[0] / 2, gy / 3 - logo.get_size()[1]))
 
+    def menu_event(self, event):
+        if event == "Quit":
+            pygame.event.post(pygame.event.Event(pygame.QUIT, {}))
+        elif event == "Continue":
+            print("GET_GAMES")
+        elif event == "New_Game":
+            print("START_GAME")
+
 class Button:
 
     def __init__(self, name, rel_x, rel_y, width, height, text="", button_colour=(255, 255, 255), text_colour=(0,0,0)) :

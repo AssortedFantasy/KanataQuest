@@ -42,9 +42,10 @@ def main(game):
         # pg.draw.circle(game.main_display, colours.Red, (0, 0), 100, 10)
         draw_loop(game)
         event_handler(game)
-        print(menu.is_clicked())
+        button_click = menu.is_clicked()
+        if button_click:
+            menu.menu_event(button_click)
         game.clock.tick(game.fps)
-
 
 # This is the entrance code for this file.
 def launch():
