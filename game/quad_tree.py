@@ -4,7 +4,7 @@ import pygame as pg
 
 default_capacity = 6
 
-# Quad Tree based on Pygame Rects
+
 class QuadTree:
     def __init__(self, rect: pg.Rect, capacity=default_capacity):
         self.rect = rect.copy()
