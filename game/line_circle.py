@@ -1,25 +1,20 @@
-# import numpy as np
-# import math
-
-
-# Implements brensenhams line and circle algorithms, returns a list of points.
-
+# Bresenham's Line and Circle Algorithms, Implemented in Python!
 
 
 def sign(x):
-    if x>=0:
+    if x >= 0:
         return 1
     else:
         return -1
 
 
-# Brensenhams Line algorithm, points are invariably ordered from (x0,y0) -> (x1,y1)
-# Does not nessesarily need integer points, but will return integer points.
-def line(x0,y0,x1,y1):
-    dx = x1-x0
-    dy = y1-y0
+# Bresenham's Line algorithm, points are invariably ordered from (x0,y0) -> (x1,y1)
+# Points must be integers.
+def line(x0, y0, x1, y1):
+    dx = x1 - x0
+    dy = y1 - y0
 
-    points = [(x0,y0)]
+    points = [(x0, y0)]
 
     # Step in X and Step in Y
     sx = sign(dx)
@@ -29,13 +24,13 @@ def line(x0,y0,x1,y1):
         # Sideways moving algorithm
         A = abs(dx)
         B = -abs(dy)
-        D = A + 2*B
+        D = A + 2 * B
 
         x = x0
         y = y0
 
-        P = 2*(A+B)
-        Q = 2*B
+        P = 2 * (A + B)
+        Q = 2 * B
 
         while x != x1:
             x += sx
@@ -47,7 +42,6 @@ def line(x0,y0,x1,y1):
             points.append((x, y))
     else:
         # Reverse the x's and y's above
-        # Sideways moving algorithm
         A = abs(dy)
         B = -abs(dx)
         D = A + 2 * B
@@ -68,50 +62,49 @@ def line(x0,y0,x1,y1):
             points.append((x, y))
     return points
 
-# Returns all points on a circle, rounded to the nearest integer, around a point
-# x0,y0 of radius r.
+
+# Returns all points on a circle, rounded to the nearest integer, around a point x0,y0 of radius r.
 # Counter clockwise.
 def circle(x0, y0, r):
-
     points = []
 
     # Integer calculations
-    d = 3 - 2*int(r)
+    d = 3 - 2 * int(r)
     x = int(r)
     y = 0
 
-    # Magical Brensenhams algorithm, Derived through much pain 
+    # Magical Breshams algorithm, Derived through much pain
     # and suffering
-    while(x >= y):
-        points.append((x,y))
+    while x >= y:
+        points.append((x, y))
 
         if d > 0:
-            d += 4*(y-x) + 10
+            d += 4 * (y - x) + 10
             x -= 1
         else:
-            d += 4*y + 6
+            d += 4 * y + 6
         y += 1
 
     # Flipped around x,y Don't include the last point if x=y
     # To maintain counter clockwise, iterated in reverse.
-    x,y = points[-1]
+    x, y = points[-1]
     if x != y:
         # print("X != Y")
-        flipped_points = [ (y,x) for x,y in points[::-1] ]
+        flipped_points = [(y, x) for x, y in points[::-1]]
     else:
         # print("X == Y")
-        flipped_points = [ (y,x) for x,y in points[-2::-1] ]
+        flipped_points = [(y, x) for x, y in points[-2::-1]]
     quarter_circle = points + flipped_points
 
     # Now do the circle, reflected over y axis.
-    flipped_points = [(-x, y) for x,y in quarter_circle[-2::-1]]
+    flipped_points = [(-x, y) for x, y in quarter_circle[-2::-1]]
     half_circle = quarter_circle + flipped_points
 
     # Now do the bottom half circle.
-    flipped_points = [(x, -y) for x,y in half_circle[-2:0:-1]]
-    circle = half_circle + flipped_points
+    flipped_points = [(x, -y) for x, y in half_circle[-2:0:-1]]
+    completed_circle = half_circle + flipped_points
 
-    return circle
+    return [(x + x0, y + y0) for x, y in completed_circle]
 
 
 """ Slower Algorithm, not as accurate.

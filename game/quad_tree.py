@@ -1,56 +1,50 @@
+from collections import deque
+import pygame as pg
 
+
+# Quad Tree based on Pygame Rects
 class QuadTree:
-
-    def __init__ (self, x, y, width, height, capacity):
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.points = [] * capacity
+    def __init__(self, rect: pg.Rect, capacity):
+        self.rect = rect.copy()
+        self.points = []  # Tuple of item, x, y
         self.div = []
-        self.isDivided = False
         self.capacity = capacity
 
-    def contains(self, point):
-        return (point[0] >= self.x) and (point[0] <= self.x + self.width) and (point[1] <= self.y + self.height) and (point[1] >= self.y)
-
-    def addPoint(self, point):
-
-        if self.isDivided and self.contains(point):
-            for tree in self.div:
-                if tree.contains(point):
-                    tree.addPoint(point)
-                    return
-        elif (len(self.points) + 1) < self.capacity:
-            if self.contains(point):
-                self.points.append(point)
+    def add_item(self, item, x, y):
+        if self.rect.collidepoint(x, y):
+            for child in self.div:
+                if child.add_item(item, x, y):
+                    return True
+            self.points.append((item, x, y))
+            if len(self.points) == self.capacity:
+                self.sub_divide()
         else:
-            self.subDivide()
-            self.addPoint(point)
+            return False
 
-    # Gets all points in the same section as a given point
-    def getPoints(self, point):
-        if self.isDivided:
-            for tree in self.div:
-                if tree.contains(point):
-                    return tree.points
-        else:
-            return self.points
+    # Return all items inside a given rect object!
+    def query(self, rect: pg.Rect, _container=None):
+        if _container is None:
+            _container = deque()
 
-    # Given a tree, it will subdivide the tree into the div list
-    def subDivide(self):
-        self.isDivided = True
-        width = self.width / 2
-        height = self.height / 2
-        self.div.append(QuadTree(self.x, self.y, width, height,self.capacity))
-        self.div.append(QuadTree(self.x + width, self.y, width, height,self.capacity))
-        self.div.append(QuadTree(self.x, self.y + height, width, height,self.capacity))
-        self.div.append(QuadTree(self.x + width, self.y + height, width, height,self.capacity))
-        for point in self.points:
-            for tree in self.div:
-                tree.addPoint(point)
+        for item, x, y in self.points:
+            if rect.collidepoint(x, y):
+                _container.append(item)
 
+        for child in self.div:
+            child.query(rect, _container=_container)
+        return _container
 
+    def sub_divide(self):
+        width = self.rect.width/2
+        height = self.rect.height/2
 
-
-
+        r0 = pg.Rect(self.rect.topleft, width, height)
+        r1 = pg.Rect(self.rect.midtop, width, height)
+        r2 = pg.Rect(self.rect.midleft, width, height)
+        r3 = pg.Rect(self.rect.center, width, height)
+        self.div.extend([
+            QuadTree(r0, self.capacity),
+            QuadTree(r1, self.capacity),
+            QuadTree(r2, self.capacity),
+            QuadTree(r3, self.capacity),
+        ])
