@@ -22,7 +22,7 @@ class Button:
         self.rel_y = rel_y
         self.text = text
         self.font = pygame.font("Arial")
-        text_width =  self.pygame.font.Font.size(self.font, self.text)
+        text_width = self.pygame.font.Font.size(self.font, self.text)
         if text_width < width:
             self.width = text_width
         else:
@@ -30,8 +30,7 @@ class Button:
         self.height = height
 
     def get_rect(self, screen_width, screen_height):
-        width = self.width / 2
-        height = self.height / 2
-        dimensions = (self.rel_x * screen_width - width, self.rel_y * screen_height - height, width * 2, height * 2)
+        dimensions = (self.rel_x * screen_width - self.width / 2, self.rel_y * screen_height - self.height / 2,
+                      self.width, self.height)
         return pygame.Rect(dimensions), self.font.render(self.text, False, self.border_colour)
 
