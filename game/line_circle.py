@@ -1,4 +1,4 @@
-# Implements brensenhams line and circle algorithms, returns a list of points.
+# Bresenham's Line and Circle Algorithms, Implemented in Python!
 
 
 def sign(x):
@@ -8,8 +8,8 @@ def sign(x):
         return -1
 
 
-# Brensenhams Line algorithm, points are invariably ordered from (x0,y0) -> (x1,y1)
-# Does not nessesarily need integer points, but will return integer points.
+# Bresenham's Line algorithm, points are invariably ordered from (x0,y0) -> (x1,y1)
+# Points must be integers.
 def line(x0, y0, x1, y1):
     dx = x1 - x0
     dy = y1 - y0
@@ -42,7 +42,6 @@ def line(x0, y0, x1, y1):
             points.append((x, y))
     else:
         # Reverse the x's and y's above
-        # Sideways moving algorithm
         A = abs(dy)
         B = -abs(dx)
         D = A + 2 * B
@@ -64,8 +63,7 @@ def line(x0, y0, x1, y1):
     return points
 
 
-# Returns all points on a circle, rounded to the nearest integer, around a point
-# x0,y0 of radius r.
+# Returns all points on a circle, rounded to the nearest integer, around a point x0,y0 of radius r.
 # Counter clockwise.
 def circle(x0, y0, r):
     points = []
@@ -75,9 +73,9 @@ def circle(x0, y0, r):
     x = int(r)
     y = 0
 
-    # Magical Brensenhams algorithm, Derived through much pain 
+    # Magical Breshams algorithm, Derived through much pain
     # and suffering
-    while (x >= y):
+    while x >= y:
         points.append((x, y))
 
         if d > 0:
@@ -104,9 +102,9 @@ def circle(x0, y0, r):
 
     # Now do the bottom half circle.
     flipped_points = [(x, -y) for x, y in half_circle[-2:0:-1]]
-    circle = half_circle + flipped_points
+    completed_circle = half_circle + flipped_points
 
-    return [(x + x0, y + y0) for x,y in circle]
+    return [(x + x0, y + y0) for x, y in completed_circle]
 
 
 """ Slower Algorithm, not as accurate.
