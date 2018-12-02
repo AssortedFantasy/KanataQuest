@@ -79,9 +79,9 @@ class MainMenu(Menu):
         logo = pygame.transform.scale(logo, (int(scalex * logo.get_size()[0]), int(scaley * logo.get_size()[1])))
         # self.menu = pygame.Surface((width, height))
 
-        self.buttons.append(Button("New_Game", 0.5, 0.5, 100, 50, "New Game"))
-        self.buttons.append(Button("Continue", 0.5, 0.55, 100, 50, "Continue"))
-        self.buttons.append(Button("Quit", 0.5, 0.6, 100, 50, "Quit"))
+        self.buttons.append(Button("New_Game", 0.5, 0.5, 100, 50, "New Game", (255, 0, 0), (255, 255, 0)))
+        self.buttons.append(Button("Continue", 0.5, 0.55, 100, 50, "Continue", (0, 0, 255), (0, 255, 0)))
+        self.buttons.append(Button("Quit", 0.5, 0.6, 100, 50, "Quit", (255, 0, 255), (0, 255, 255)))
 
         self.update()
         gx, gy = self.menu.get_size()
