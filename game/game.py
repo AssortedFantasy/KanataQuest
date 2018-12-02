@@ -35,10 +35,12 @@ def event_handler(game: states.GameState):
 
 
 def main(game):
+    menu = button.Menu(game)
     while game.is_running:
         # pg.draw.circle(game.main_display, colours.Red, (0, 0), 100, 10)
         draw_loop(game)
         event_handler(game)
+        print(menu.is_clicked())
         game.clock.tick(game.fps)
 
 
