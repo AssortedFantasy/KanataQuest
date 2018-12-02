@@ -3,7 +3,7 @@ import ctypes
 import sys
 from pathlib import Path
 from . import states
-from . import colours
+
 
 # From https://gamedev.stackexchange.com/questions/105750/pygame-fullsreen-display-issue
 if sys.platform == "win32":
@@ -11,33 +11,41 @@ if sys.platform == "win32":
 splash_location = Path("./assets/images/splash.png")
 
 
-def draw_loop(game: states.GameState):
-    # Handles all drawing for the game!
+def draw_loop(game_state: states.GameState):
+    """
+    The draw loop takes whatever is the current screen in the game and draws it to the screen
+    """
     screen = pg.display.get_surface()
     dx, dy = screen.get_rect().center
-    gx, gy = game.display_rect.center
-    pg.display.get_surface().blit(game.main_display, (dx-gx, dy-gy))
+    gx, gy = game_state.display_rect.center
+    pg.display.get_surface().blit(game_state.main_display, (dx - gx, dy - gy))
     pg.display.flip()
 
 
-def event_handler(game: states.GameState):
-    # Handles certain events for the game, passes the rest into the deque in gamestate.
+def event_handler(game_state: states.GameState):
+    """
+    The event handler first clears the games event queue, then puts copies of all events which are on the event loop
+    onto the games internal copy of the event loop.
+
+    With the exception of the QUIT and VIDEORESIZE types of events, which it handles itself.
+    """
     for event in pg.event.get():
+        game_state.event_queue.clear()
         if event.type == pg.QUIT:
-            game.is_running = False
-        if event.type == pg.VIDEORESIZE:
-            new_screen = pg.display.set_mode(event.size, game.display_params)
-            new_screen.fill(game.background)
-            game.screen_res_out_of_date = True
-        if event.type in [pg.KEYDOWN, pg.KEYUP, pg.MOUSEMOTION, pg.MOUSEBUTTONUP, pg.MOUSEBUTTONDOWN]:
-            game.event_queue.append(event)
+            game_state.is_running = False
+        elif event.type == pg.VIDEORESIZE:
+            new_screen = pg.display.set_mode(event.size, game_state.display_params)
+            new_screen.fill(game_state.background)
+            game_state.screen_res_out_of_date = True
+        else:
+            game_state.event_queue.append(event)
 
 
 def main(game):
     while game.is_running:
-        # pg.draw.circle(game.main_display, colours.Red, (0, 0), 100, 10)
         draw_loop(game)
         event_handler(game)
+        game.update()
         game.clock.tick(game.fps)
 
 

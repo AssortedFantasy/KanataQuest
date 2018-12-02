@@ -52,3 +52,6 @@ class GameState:
             self.main_display.fill(self.background)
             return True
         return False
+
+    def update(self):
+        pass
