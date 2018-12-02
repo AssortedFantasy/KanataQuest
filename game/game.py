@@ -1,10 +1,14 @@
 import pygame as pg
 import ctypes
+import sys
+from pathlib import Path
 from . import states
 from . import colours
 
 # From https://gamedev.stackexchange.com/questions/105750/pygame-fullsreen-display-issue
-ctypes.windll.user32.SetProcessDPIAware()
+if sys.platform == "win32":
+    ctypes.windll.user32.SetProcessDPIAware()
+splash_location = Path("./assets/images/splash.png")
 
 
 def draw_loop(game: states.GameState):
@@ -17,22 +21,22 @@ def draw_loop(game: states.GameState):
 
 
 def event_handler(game: states.GameState):
-    # Handles all events for the game!
+    # Handles certain events for the game, passes the rest into the deque in gamestate.
     for event in pg.event.get():
         if event.type == pg.QUIT:
             game.is_running = False
-        if event.type == pg.ACTIVEEVENT:
-            print(event)
         if event.type == pg.VIDEORESIZE:
             new_screen = pg.display.set_mode(event.size, game.display_params)
             new_screen.fill(game.background)
             game.screen_res_out_of_date = True
+        if event.type in [pg.KEYDOWN, pg.KEYUP, pg.MOUSEMOTION, pg.MOUSEBUTTONUP, pg.MOUSEBUTTONDOWN]:
+            game.event_queue.append(event)
 
 
 def main(game):
     while game.is_running:
-        draw_loop(game)
         # pg.draw.circle(game.main_display, colours.Red, (0, 0), 100, 10)
+        draw_loop(game)
         event_handler(game)
         game.clock.tick(game.fps)
 
@@ -41,8 +45,9 @@ def main(game):
 def launch():
     # First We need to run initialization.
     pg.init()
+
     try:
-        splash_file = open("./assets/images/splash.png", mode="rb")
+        splash_file = open(splash_location, mode="rb")
     except FileNotFoundError:
         splash_file = None
         print("Error: Missing splash screen picture! Is the assets folder missing or path incorrect?")

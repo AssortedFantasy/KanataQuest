@@ -1,23 +1,24 @@
 import pygame as pg
+from collections import deque
 # States.py is the definition file for game states!
 # main_loops must be run in a game state.
 
 # GLOBAL PARAMETERS
 default_fps = 30
 default_res = 640, 480
-default_display_params = pg.RESIZABLE | 0
+default_display_params = pg.RESIZABLE
 default_background_colour = (255, 255, 255)  # White
 
 
 class Settings:
     def __init__(self):
-        self.up = [pg.K]
-        self.down = []
-        self.left = []
-        self.right = []
-        self.inventory = []
-        self.select = []
-        self.go_back = []
+        self.up = [pg.K_UP, pg.K_w]
+        self.down = [pg.K_DOWN, pg.K_d]
+        self.left = [pg.K_LEFT, pg.K_a]
+        self.right = [pg.K_RIGHT, pg.K_d]
+        self.inventory = [pg.K_e]
+        self.select = [pg.K_RETURN]
+        self.go_back = [pg.K_ESCAPE]
 
 
 class GameState:
@@ -28,6 +29,7 @@ class GameState:
     def __init__(self):
         self.is_active = True
         self.is_running = True
+        self.event_queue = deque()
 
         self.current_state = "MENU"
 
