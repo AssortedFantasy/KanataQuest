@@ -7,7 +7,7 @@ class QuadTree:
         self.width = width
         self.height = height
         self.points = [] * capacity
-        self.div = [] * 4
+        self.div = []
         self.isDivided = False
         self.capacity = capacity
 
@@ -26,6 +26,7 @@ class QuadTree:
                 self.points.append(point)
         else:
             self.subDivide()
+            self.addPoint(point)
 
     def getPoints(self, point):
         if self.isDivided:
