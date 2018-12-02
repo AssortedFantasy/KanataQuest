@@ -17,7 +17,7 @@ class QuadTree:
                     return True
             self.points.append((item, x, y))
             if len(self.points) == self.capacity:
-                self.subDivide()
+                self.sub_divide()
         else:
             return False
 
@@ -34,7 +34,7 @@ class QuadTree:
             child.query(rect, _container=_container)
         return _container
 
-    def subDivide(self):
+    def sub_divide(self):
         width = self.rect.width/2
         height = self.rect.height/2
 
