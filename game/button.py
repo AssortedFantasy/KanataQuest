@@ -4,37 +4,50 @@ from pathlib import Path
 
 class Menu:
 
-    def __init__(self, width, height, game_state):
+    def __init__(self, game_state):
         self.buttons = []
         self.game = game_state
-        self.width = width
-        self.height = height
+        self.width, self.height = game_state.main_display.get_size()
         background_location = Path("./assets/images/tmp_background.png")
         logo_location = Path("./assets/images/Logo.png")
         try:
             background_file = open(background_location, mode="rb")
+            logo_file = open(logo_location, mode="rb")
         except FileNotFoundError:
             background_file = None
-            print("Error: Missing splash screen picture! Is the assets folder missing or path incorrect?")
+            logo_file = None
+            print("Error: Missing main menu picture! Is the assets folder missing or path incorrect?")
             exit(-1)
         self.menu = pygame.image.load(background_file)
-        self.menu = pygame.transform.scale(self.menu, (width, height))
+        dim1 = self.menu.get_size()
+        logo = pygame.image.load(logo_file)
+        self.menu = pygame.transform.scale(self.menu, self.game.main_display.get_size())
+        scalex, scaley = dim1[0] / self.menu.get_size()[0], dim1[1] / self.menu.get_size()[1]
+        logo = pygame.transform.scale(logo, (int(scalex * logo.get_size()[0]), int(scaley * logo.get_size()[1])))
         # self.menu = pygame.Surface((width, height))
-        self.buttons.append(Button("Sample", 0.5, 0.5, 100, 50, "New Game"))
+        self.buttons.append(Button("New_Game", 0.5, 0.5, 100, 50, "New Game"))
+        self.buttons.append(Button("Continue", 0.5, 0.55, 100, 50, "Continue"))
+        self.buttons.append(Button("Quit", 0.5, 0.6, 100, 50, "Quit"))
+
         self.update()
-        print(self.is_clicked(pygame.mouse.get_pos()))
+        gx, gy = self.menu.get_size()
+        self.game.main_display.blit(logo, (gx/2 - logo.get_size()[0] / 2, gy / 3 - logo.get_size()[1]))
 
     def update(self):
         for button in self.buttons:
-            text = button.get_rect(self.width, self.height)
-            gx, gy = self.menu.get_rect().center
-            button.rect = self.menu.blit(text, (gx, gy))  # Blit onto the same position as the rectangle
+            text = button.get_rect()
+            gx, gy = self.game.main_display.get_size()
+            button.rect = self.menu.blit(text, (gx * button.rel_x - button.width / 2,
+                                                gy * button.rel_y - button.height / 2))
         self.game.main_display.blit(self.menu, (0, 0))
 
-    def is_clicked(self, mos_pos):
-        for button in self.buttons:
-            if button.rect.collidepoint(mos_pos):
-                return button.name
+    def is_clicked(self):
+        for event in self.game.event_queue:
+            if event.type == pygame.MOUSEBUTTONUP:
+                for button in self.buttons:
+                    if button.rect.collidepoint(pygame.mouse.get_pos()):
+                        return button.name
+            # REMOVE EVENT FROM QUEUE
 
 class Button:
 
@@ -54,6 +67,6 @@ class Button:
             self.width = width
         self.height = height
 
-    def get_rect(self, screen_width, screen_height):
+    def get_rect(self):
         return self.font.render(self.text, False, self.button_colour, (0, 0, 0))
 
