@@ -89,9 +89,9 @@ class MainMenu(Menu):
 
 class Button:
 
-    def __init__(self, name, rel_x, rel_y, width, height, text="", button_colour=(255, 255, 255), border_colour=(0,0,0)) :
+    def __init__(self, name, rel_x, rel_y, width, height, text="", button_colour=(255, 255, 255), text_colour=(0,0,0)) :
         self.button_colour = button_colour
-        self.border_colour = border_colour
+        self.text_colour = text_colour
         self.name = name
         self.rel_x = rel_x
         self.rel_y = rel_y
@@ -106,5 +106,5 @@ class Button:
         self.height = height
 
     def get_surf(self):
-        surf = self.font.render(self.text, False, self.button_colour, (0, 0, 0))
+        surf = self.font.render(self.text, False, self.button_colour, self.text_colour)
         return pygame.transform.scale(surf, (self.width, self.height))
