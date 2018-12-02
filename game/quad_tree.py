@@ -2,9 +2,11 @@ from collections import deque
 import pygame as pg
 
 
+default_capacity = 6
+
 # Quad Tree based on Pygame Rects
 class QuadTree:
-    def __init__(self, rect: pg.Rect, capacity):
+    def __init__(self, rect: pg.Rect, capacity=default_capacity):
         self.rect = rect.copy()
         self.points = []  # Tuple of item, x, y
         self.div = []
