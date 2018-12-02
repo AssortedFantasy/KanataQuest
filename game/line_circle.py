@@ -1,7 +1,3 @@
-# import numpy as np
-# import math
-
-
 # Implements brensenhams line and circle algorithms, returns a list of points.
 
 
