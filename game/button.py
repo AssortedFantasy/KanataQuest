@@ -22,7 +22,7 @@ class Menu:
 
     def update(self):
         for button in self.buttons:
-            text = button.get_rect()
+            text = button.get_surf()
             gx, gy = self.game.main_display.get_size()
             button.rect = self.menu.blit(text, (gx * button.rel_x - button.width / 2,
                                                 gy * button.rel_y - button.height / 2))
@@ -81,7 +81,7 @@ class Button:
         self.rel_y = rel_y
         self.text = text
         pygame.font.init()
-        self.font = pygame.font.SysFont("arial",20)
+        self.font = pygame.font.SysFont("arial",50)
         text_width = pygame.font.Font.size(self.font, self.text)[0]
         if text_width < width:
             self.width = text_width
@@ -89,6 +89,6 @@ class Button:
             self.width = width
         self.height = height
 
-    def get_rect(self):
-        return self.font.render(self.text, False, self.button_colour, (0, 0, 0))
-
+    def get_surf(self):
+        surf = self.font.render(self.text, False, self.button_colour, (0, 0, 0))
+        return pygame.transform.scale(surf, (self.width, self.height))
