@@ -28,6 +28,7 @@ class QuadTree:
             self.subDivide()
             self.addPoint(point)
 
+    # Gets all points in the same section as a given point
     def getPoints(self, point):
         if self.isDivided:
             for tree in self.div:
@@ -36,8 +37,7 @@ class QuadTree:
         else:
             return self.points
 
-
-
+    # Given a tree, it will subdivide the tree into the div list
     def subDivide(self):
         self.isDivided = True
         width = self.width / 2
