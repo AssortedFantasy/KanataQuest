@@ -23,6 +23,7 @@ def draw_loop(game: states.GameState):
 
 def event_handler(game: states.GameState):
     # Handles certain events for the game, passes the rest into the deque in gamestate.
+    game.event_queue.clear()
     for event in pg.event.get():
         if event.type == pg.QUIT:
             game.is_running = False
