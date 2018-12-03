@@ -4,11 +4,11 @@ import numpy as np
 import pygame as pg
 
 
-#TODO: UPSTAIRS AND DOWNSTAIRS! Need to get Locations!
+#TODO: UPSTAIRS AND DOWNSTAIRS! Need to get Locations
 
-# Spawn cells are marked with red being = 100 exactly
-# Green is the amount of loot that spawns
-# Blue is the amount of enemies that spawn
+# These mappings relate image colours to the game
+# In addition there is a special mapping (Red = 50 or 150) which
+# cause the tiles to be points where enemies/friends may spawn!
 image_to_key_mappings = {
     "walls": np.array([0, 0, 0], dtype=np.uint8),
     "air": np.array([255, 255, 255], dtype=np.uint8),
@@ -22,6 +22,7 @@ key_to_data_id_mappings = {
     "down_stairs": np.array([3], dtype=np.uint8),
 }
 
+# This is used with how the arrays are ordered.
 type_names = {
     "loot": 0,
     "enemy": 1,
@@ -29,9 +30,24 @@ type_names = {
 }
 
 
+class Camera:
+    def __init__(self, gamestate):
+        self.game = gamestate
+
+    def draw(self):
+        pass
+
+
+# Dynamical Magic
+class EntityCreator:
+    def __init__(self, map_folder):
+
+
 class Map:
-    def __init__(self, game):
-        self.levels=[]
+    def __init__(self, map_folder):
+        self.levels = []
+        self.entity_creator = None
+
 
 
 class Levels:
