@@ -92,8 +92,37 @@ class MainMenu(Menu):
             pygame.event.post(pygame.event.Event(pygame.QUIT, {}))
         elif event == "Continue":
             print("GET_GAMES")
+            continue_menu = Menu(self.game)
+            p = Path('./saves').glob('**/*')
+            saves = [x for x in p if x.is_file()]
+            continue_menu.add_button(Button())
+
+
         elif event == "New_Game":
             print("START_GAME")
+""""
+class Button_sprite(pygame.sprite.Sprite):
+    def __init__(self, name, rel_x, rel_y, width, height, text="", button_colour=(255, 255, 255), text_colour=(0,0,0)):
+        pygame.sprite.Sprite.__init__(self)
+        self.button_colour = button_colour
+        self.text_colour = text_colour
+        self.name = name
+        self.rel_x = rel_x
+        self.rel_y = rel_y
+        self.text = " " + text + " "
+        pygame.font.init()
+        self.font = pygame.font.SysFont("impact", width // len(self.text))
+        self.image = pygame.Surface(pygame.font.Font.size(self.font, self.text)[0], height)
+        self.image.fill(button_colour)
+        self.rect, surf = self.font.render(self.text, False, self.button_colour, self.text_colour)
+        self.image.blit(surf, surf.get_center())
+
+        def get_surf(self):
+            surf = self.font.render(self.text, False, self.button_colour, self.text_colour)
+            self.rect = self.image.get_rect()
+            return pygame.transform.scale(surf, (self.width, self.height))
+ """
+
 
 class Button:
 
