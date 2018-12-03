@@ -1,24 +1,19 @@
-Tharidu
-    items (both equipabble AND consumable)
-    npcs
+Camera Objects -
+    Sit on the gamestate
+    have a location
+    go grab the entities and what the map looks like at some location
+    draw them onto the screen
 
-    # if you can, find some pictures, and put them in assets and name them.
-    # dont worry about sizing, or cleaning up.
-    # make sure you accredit them in accredidations
+Entities need to be fixed in the sense that they have a notion of motion and a notion of existing
 
-Jehanzeb
-    line algorithm
-    circle alogirthm
-    game
+Levels need to be able to updatable
 
+AI work, needs entities to be defined.
 
-Up for grabs
-    make the loops as main code
-    make the map # Sketchy, first define this
-    write the ais
+Saving ?????
 
-    flavour texts
+Loading ????
 
-    write any of the game code
+Notion of somehow actually controlling the player entitiy????
 
-    arduino interfacing
+KeyMapping? Idk?
