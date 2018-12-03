@@ -67,6 +67,8 @@ class GameState:
 
             elif button_press == "New_Game":
                 print("TODO: IMPLEMENT NEW_GAME")
+                # New game should just start the game, no menu required
+                # This state should generate a save and then converge with continue menu
                 self.current_state = "NEW_GAME_MENU"
 
             elif button_press == "Continue":
