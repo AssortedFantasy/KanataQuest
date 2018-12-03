@@ -78,4 +78,9 @@ class GameState:
             if button_press == "Back":
                 self.menu.pop()
                 self.current_state = "MENU"
+            elif button_press:
+                print(button_press)
+                # LOAD FILE
+        elif self.current_state == "NEW_GAME_MENU":
+            self.menu.append(menus.NewGameMenu(self))
 

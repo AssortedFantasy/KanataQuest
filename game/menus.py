@@ -90,8 +90,32 @@ class ContinueMenu(Menu):
         self.buttons.append(ButtonSprite("Back", 0.5, 0.7, 400, 50, "Back", (255, 0, 255), (0, 255, 255)))
         save_path = Path('./saves').glob('**/*')
         saves = [x for x in save_path if x.is_file()]
+        # TEMP ONLY SUPPORTS UP TO 5 SAVES
         for i in range(len(saves)):
-            self.buttons.append(ButtonSprite(saves[i], 0.5, 0.1 + 0.1 * i, 400, 50, "SAVE{}".format(i), (255, 0, 255), (0, 255, 255)))
+            self.buttons.append(ButtonSprite(saves[i], 0.5, 0.5 + 0.1 * i, 400, 50, "SAVE{}".format(i), (255, 0, 255), (0, 255, 255)))
+        for sprite in self.buttons:
+            self.menu_sprites.add(sprite)
+
+        self.update()
+
+class NewGameMenu(Menu):
+    def __init__(self, game_state):
+        super().__init__(game_state)
+        # self.menu = pygame.Surface((width, height))
+        self.buttons = []
+
+        self.buttons.append(ButtonSprite("Back", 0.5, 0.7, 400, 50, "Back", (255, 0, 255), (0, 255, 255)))
+        save_path = Path('./saves').glob('**/*')
+        saves = [x for x in save_path if x.is_file()]
+
+        save_file = 0
+        if(len(saves) > 5):
+            save_file = 5
+        else:
+            save_file = len(saves)
+
+        for i in range(len(saves)):
+            self.buttons.append(ButtonSprite(saves[i], 0.5, 0.5 + 0.1 * i, 400, 50, "SAVE{}".format(i), (255, 0, 255), (0, 255, 255)))
         for sprite in self.buttons:
             self.menu_sprites.add(sprite)
 
