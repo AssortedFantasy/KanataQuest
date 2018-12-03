@@ -57,7 +57,6 @@ class Menu:
         return events
 
 
-# TODO: Use super instead of remaking init
 class MainMenu(Menu):
     def __init__(self, game_state):
         super().__init__(game_state)
@@ -73,9 +72,9 @@ class MainMenu(Menu):
         logo = pygame.transform.scale(logo, (int(scalex * logo.get_size()[0]), int(scaley * logo.get_size()[1])))
         # self.menu = pygame.Surface((width, height))
         self.buttons = []
-        self.buttons.append(Button_sprite("New_Game", 0.5, 0.5, 400, 50, "New Game", (255, 0, 0), (255, 255, 0)))
-        self.buttons.append(Button_sprite("Continue", 0.5, 0.6, 400, 50, "Continue", (0, 0, 255), (0, 255, 0)))
-        self.buttons.append(Button_sprite("Quit", 0.5, 0.7, 400, 50, "Quit", (255, 0, 255), (0, 255, 255)))
+        self.buttons.append(ButtonSprite("New_Game", 0.5, 0.5, 400, 50, "New Game", (255, 0, 0), (255, 255, 0)))
+        self.buttons.append(ButtonSprite("Continue", 0.5, 0.6, 400, 50, "Continue", (0, 0, 255), (0, 255, 0)))
+        self.buttons.append(ButtonSprite("Quit", 0.5, 0.7, 400, 50, "Quit", (255, 0, 255), (0, 255, 255)))
         for sprite in self.buttons:
             self.menu_sprites.add(sprite)
 
@@ -83,23 +82,8 @@ class MainMenu(Menu):
         self.menu.blit(logo, (gx/2 - logo.get_size()[0] / 2, gy / 3 - logo.get_size()[1]))
         self.update()
 
-    def menu_event(self, event, Id=0):
-        if event == "Quit":
-            pygame.event.post(pygame.event.Event(pygame.QUIT, {}))
-        elif event == "Continue":
-            print("GET_GAMES")
-            continue_menu = Menu(self.game)
-            p = Path('./saves').glob('**/*')
-            saves = [x for x in p if x.is_file()]
-            max = len(saves)
-            for i in range(max):
-                continue_menu.add_button(Button("Continue " + i, 0.5, ))
 
-        elif event == "New_Game":
-            print("START_GAME")
-
-
-class Button_sprite(pygame.sprite.Sprite):
+class ButtonSprite(pygame.sprite.Sprite):
     def __init__(self, name, rel_x, rel_y, width, height, text="", button_colour=(255, 255, 255), text_colour=(0,0,0)):
         pygame.sprite.Sprite.__init__(self)
         self.button_colour = button_colour
