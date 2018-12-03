@@ -70,9 +70,12 @@ class GameState:
                 self.current_state = "NEW_GAME_MENU"
 
             elif button_press == "Continue":
-                self.menu.append(menus.Menu(self))
+                self.menu.append(menus.ContinueMenu(self))
                 self.current_state = "CONTINUE_MENU"
 
         elif self.current_state == "CONTINUE_MENU":
-            print("IMPLEMENT CONTINUE MENU")
+            button_press = self.menu[-1].is_clicked()
+            if button_press == "Back":
+                self.menu.pop()
+                self.current_state = "MENU"
 

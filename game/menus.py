@@ -26,7 +26,7 @@ class Menu:
         for button in self.buttons:
             gx, gy = self.game.main_display.get_size()
             button.rect.center = (gx * button.rel_x, gy * button.rel_y)
-
+            print(button.rect.center)
         self.menu_sprites.update()
         self.menu_sprites.draw(self.menu)
         self.game.main_display.blit(self.menu, (0, 0))
@@ -87,7 +87,11 @@ class ContinueMenu(Menu):
         # self.menu = pygame.Surface((width, height))
         self.buttons = []
 
-        self.buttons.append(ButtonSprite("Quit", 0.5, 0.7, 400, 50, "Quit", (255, 0, 255), (0, 255, 255)))
+        self.buttons.append(ButtonSprite("Back", 0.5, 0.7, 400, 50, "Back", (255, 0, 255), (0, 255, 255)))
+        save_path = Path('./saves').glob('**/*')
+        saves = [x for x in save_path if x.is_file()]
+        for i in range(len(saves)):
+            self.buttons.append(ButtonSprite(saves[i], 0.5, 0.1 + 0.1 * i, 400, 50, "SAVE{}".format(i), (255, 0, 255), (0, 255, 255)))
         for sprite in self.buttons:
             self.menu_sprites.add(sprite)
 
