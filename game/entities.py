@@ -11,10 +11,26 @@ class Entity:
         self.x, self.y = location
         self.z_level = z_level
 
-    # Not very smart, just moves itself ignoring walls. AI needs to deal with that!
-    def _move(self, dx, dy):
+    # Distance between two entities
+    def distance(self, other):
+        if self.z_level != other.z_level:
+            return 10000
+
+        dx = (self.x - other.x)
+        dy = (self.y - other.y)
+        return (dx*dx + dy*dy)**(1/2)
+
+    def basic_move(self, dx, dy):
         self.x += dx
         self.y += dy
+
+    def is_in_range_1(self, other):
+        if self.z_level == other.z_level:
+            if abs(self.x - other.x) <= 1:
+                if abs(self.y - other.y) <= 1:
+                    return True
+        else:
+            return False
 
 
 class Item(Entity):
@@ -23,14 +39,6 @@ class Item(Entity):
         self.name = "GenericItem"
         self.icon = icon
         self.stats = {}
-
-    def is_in_pickup_range(self, other: Entity):
-        if abs(self.x - other.x) <= 1:
-            if abs(self.y - other.y) <= 1:
-                if self.z_level == other.z_level:
-                    return True
-        else:
-            return False
 
 
 class Consumable(Item):
@@ -61,6 +69,7 @@ class Mob(Entity):
         self.name = "GenericMob"
         self.effects = []
         self.icon = icon
+        self.tag = "enemy"
         self.stats = {
             "sight": 1,
             "speed": 0,
@@ -91,6 +100,7 @@ class Player(Mob):
     def __int__(self, location, z_level, icon):
         super().__init__(location, z_level, icon)
         self.inventory = []
+        self.tag = "friendly"
         self.equipment = {
             "head": None,
             "l_hand": None,
