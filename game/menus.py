@@ -3,7 +3,6 @@ from pathlib import Path
 
 
 class Menu:
-
     def __init__(self, game_state, bg_path="./assets/images/tmp_background.png"):
         self.buttons = []
         self.game = game_state
@@ -55,8 +54,8 @@ class Menu:
         return events
 
 
+# TODO: Use super instead of remaking init
 class MainMenu(Menu):
-
     def __init__(self, game_state):
         self.buttons = []
         self.game = game_state
@@ -96,7 +95,6 @@ class MainMenu(Menu):
             p = Path('./saves').glob('**/*')
             saves = [x for x in p if x.is_file()]
             continue_menu.add_button(Button())
-
 
         elif event == "New_Game":
             print("START_GAME")

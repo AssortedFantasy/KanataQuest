@@ -3,6 +3,9 @@ import random
 import numpy as np
 import pygame as pg
 
+
+#TODO: UPSTAIRS AND DOWNSTAIRS! Need to get Locations!
+
 # Spawn cells are marked with red being = 100 exactly
 # Green is the amount of loot that spawns
 # Blue is the amount of enemies that spawn

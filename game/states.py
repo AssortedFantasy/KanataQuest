@@ -10,7 +10,7 @@ default_display_params = pg.RESIZABLE
 default_background_colour = (255, 255, 255)  # White
 
 
-class Settings:
+class KeyBindings:
     def __init__(self):
         self.up = [pg.K_UP, pg.K_w]
         self.down = [pg.K_DOWN, pg.K_d]
@@ -27,18 +27,18 @@ class GameState:
     It serves to fill the function of not having huge numbers of global variables littered literally everywhere.
     """
     def __init__(self):
-        self.is_active = True
         self.is_running = True
         self.event_queue = deque()
 
-        self.current_state = "MENU"
-
-        self.background = default_background_colour  # Background colour
-        self.res = default_res  # Width , Height
+        # Have to do with display scaling
+        self.background = default_background_colour
+        self.res = default_res
         self.screen_res_out_of_date = True
         self.display_params = default_display_params
         self.main_display = pg.Surface(self.res)
         self.display_rect = self.main_display.get_rect()
+
+        self.current_state = "MENU"
 
         self.fps = default_fps   # Probably don't set to 0
         self.clock = pg.time.Clock()  # Clock object for this game state
@@ -53,5 +53,8 @@ class GameState:
             return True
         return False
 
+    # TODO: MOVE MENU CODE HERE
     def update(self):
-        pass
+        if self.current_state == "MENU":
+            pass
+
