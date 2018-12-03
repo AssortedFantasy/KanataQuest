@@ -43,7 +43,6 @@ class Menu:
                 for button in self.buttons:
                     if button.rect.collidepoint(pygame.mouse.get_pos()):
                         return button.name
-            # REMOVE EVENT FROM QUEUE
 
     # Returns all clicked buttons if that's even useful
     def all_clicked(self):
@@ -70,8 +69,7 @@ class MainMenu(Menu):
         logo = pygame.Surface.convert(pygame.image.load(logo_file))
         scalex, scaley = self.original_dim[0] / self.menu.get_size()[0], self.original_dim[1] / self.menu.get_size()[1]
         logo = pygame.transform.scale(logo, (int(scalex * logo.get_size()[0]), int(scaley * logo.get_size()[1])))
-        # self.menu = pygame.Surface((width, height))
-        self.buttons = []
+
         self.buttons.append(ButtonSprite("New_Game", 0.5, 0.5, 400, 50, "New Game", (255, 0, 0), (255, 255, 0)))
         self.buttons.append(ButtonSprite("Continue", 0.5, 0.6, 400, 50, "Continue", (0, 0, 255), (0, 255, 0)))
         self.buttons.append(ButtonSprite("Quit", 0.5, 0.7, 400, 50, "Quit", (255, 0, 255), (0, 255, 255)))
@@ -80,6 +78,19 @@ class MainMenu(Menu):
 
         gx, gy = self.menu.get_size()
         self.menu.blit(logo, (gx/2 - logo.get_size()[0] / 2, gy / 3 - logo.get_size()[1]))
+        self.update()
+
+
+class ContinueMenu(Menu):
+    def __init__(self, game_state):
+        super().__init__(game_state)
+        # self.menu = pygame.Surface((width, height))
+        self.buttons = []
+
+        self.buttons.append(ButtonSprite("Quit", 0.5, 0.7, 400, 50, "Quit", (255, 0, 255), (0, 255, 255)))
+        for sprite in self.buttons:
+            self.menu_sprites.add(sprite)
+
         self.update()
 
 
