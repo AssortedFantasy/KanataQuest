@@ -1,10 +1,15 @@
 import pygame as pg
+import json
 
 default_texture = pg.image.load("./assets/images/missing_texture.png").convert()
 
 
 class Entity:
+    freeid = 0
+
     def __init__(self, location, z_level):
+        self.uuid = Entity.freeid
+        Entity.freeid += 1
         self.name = "GenericEntity"
         self.flavourtext = None
         self.icon = default_texture.copy()
@@ -93,7 +98,13 @@ class Mob(Entity):
         return base_value
 
     def apply_effect(self, effect, strength, duration):
-        self.effects.append([effect, strength, duration])
+        self.effects.append((effect, strength, duration))
+
+    def tick_effects(self):
+        new_effects = []
+        for effect, strength, duration in self.effects:
+            if duration > 1:
+                new_effects.append((effect, strength, duration-1))
 
 
 class Player(Mob):
