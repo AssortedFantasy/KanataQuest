@@ -1,4 +1,5 @@
 import pygame as pg
+from . import menus
 from collections import deque
 # States.py is the definition file for game states!
 # main_loops must be run in a game state.
@@ -38,6 +39,7 @@ class GameState:
         self.main_display = pg.Surface(self.res)
         self.display_rect = self.main_display.get_rect()
 
+        self.menu = []
         self.current_state = "MENU"
 
         self.fps = default_fps   # Probably don't set to 0
@@ -56,5 +58,24 @@ class GameState:
     # TODO: MOVE MENU CODE HERE
     def update(self):
         if self.current_state == "MENU":
-            pass
+            self.menu.append(menus.MainMenu(self))
+            self.current_state = "MENU_DEFINED"
+        elif self.current_state == "MENU_DEFINED":
+            button_press = self.menu[-1].is_clicked()
+            if button_press == "Quit":
+                pg.event.post(pg.event.Event(pg.QUIT, {}))
+
+            elif button_press == "New_Game":
+                print("TODO: IMPLEMENT NEW_GAME")
+                self.current_state = "NEW_GAME_MENU"
+
+            elif button_press == "Continue":
+                self.menu.append(menus.ContinueMenu(self))
+                self.current_state = "CONTINUE_MENU"
+
+        elif self.current_state == "CONTINUE_MENU":
+            button_press = self.menu[-1].is_clicked()
+            if button_press == "Back":
+                self.menu.pop()
+                self.current_state = "MENU"
 

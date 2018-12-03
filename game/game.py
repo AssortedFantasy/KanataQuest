@@ -35,7 +35,6 @@ def event_handler(game: states.GameState):
 # TODO: Move menu things, into update inside the state
 def main(game):
     # Starts Main Menu
-    menu = menus.MainMenu(game)
     display = pg.display.get_surface()
     while game.is_running:
         # pg.draw.circle(game.main_display, colours.Red, (0, 0), 100, 10)
